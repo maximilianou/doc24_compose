@@ -1,0 +1,38 @@
+version: '3.7'
+services:
+  reg_srv: 
+    container_name: reg_srv 
+    build: 
+      context: ./reg_srv/.
+      dockerfile: Dockerfile 
+    volumes:
+      - './reg_srv:/opt/app'
+      - './reg_srv/node_modules:/opt/app/node_modules'
+    ports:
+      - '10100:10100'
+    environment:
+      - NODE_ENV=development
+  front_srv: 
+    container_name: front_srv 
+    build: 
+      context: ./front_srv/.
+      dockerfile: Dockerfile 
+    volumes:
+      - './front_srv:/opt/app'
+      - './front_srv/node_modules:/opt/app/node_modules'
+    ports:
+      - '10200:10200'
+    environment:
+      - NODE_ENV=development
+  back_srv: 
+    container_name: back_srv 
+    build: 
+      context: ./back_srv/.
+      dockerfile: Dockerfile 
+    volumes:
+      - './back_srv:/opt/app'
+      - './back_srv/node_modules:/opt/app/node_modules'
+    ports:
+      - '10300:10300'
+    environment:
+      - NODE_ENV=development
